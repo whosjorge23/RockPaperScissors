@@ -11,21 +11,25 @@ struct ContentView: View {
     let choicesArray = ["👊","🖐","✌️"]
     @State var computerChoice = "✌️"
     @State var result = ""
+    @State private var showingAlert = false
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0, content: {
             Text("Rock Paper Scissors")
-                .font(.title)
-                .padding(.bottom,150)
-            Text("Computer Choice")
-                .font(.title3)
-                .padding(.bottom,50)
-            Text(computerChoice)
                 .font(.largeTitle)
                 .padding(.bottom,50)
+//            Text(result)
+//                .padding(.bottom,100)
+            Text("Computer Choice")
+                .font(.title2)
+                .padding(.bottom,50)
+            Text(computerChoice)
+                .font(.system(size: 80))
+                .padding(.bottom,50)
             
-            Divider()
+            Divider().frame(height: 5).background(Color.gray)
             
-            HStack(alignment: .center, spacing: 120, content: {
+            HStack(alignment: .center, spacing: 50, content: {
                 Button(action: {
                     self.computerChoice = choicesArray.randomElement()!
                     
@@ -36,10 +40,14 @@ struct ContentView: View {
                     }else {
                         result = "It's a Draw"
                     }
+                    showingAlert = true
                 }, label: {
                     Text("👊")
-                        .font(.largeTitle)
+                        .font(.system(size: 80))
                 })
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")))
+                }
                 Button(action: {
                     self.computerChoice = choicesArray.randomElement()!
                     
@@ -50,10 +58,14 @@ struct ContentView: View {
                     }else {
                         result = "It's a Draw"
                     }
+                    showingAlert = true
                 }, label: {
                     Text("🖐")
-                        .font(.largeTitle)
+                        .font(.system(size: 80))
                 })
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")))
+                }
                 Button(action: {
                     self.computerChoice = choicesArray.randomElement()!
                     
@@ -64,19 +76,21 @@ struct ContentView: View {
                     }else {
                         result = "It's a Draw"
                     }
+                    showingAlert = true
                 }, label: {
                     Text("✌️")
-                        .font(.largeTitle)
+                        .font(.system(size: 80))
                 })
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")))
+                }
                 
             })
             .padding(.top,50)
             
             Text("Your Choice")
-                .font(.title3)
+                .font(.title2)
                 .padding(.top,50)
-            Spacer()
-            Text(result)
             Spacer()
         })
     }
