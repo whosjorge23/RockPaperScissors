@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     let choicesArray = ["👊","🖐","✌️"]
-    @State var computerChoice = "✌️"
+    @State var computerChoice = "?"
     @State var result = ""
     @State private var showingAlert = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 0, content: {
             Text("Rock Paper Scissors")
-                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                .foregroundColor(.blue)
                 .font(.largeTitle)
                 .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .padding(.bottom,50)
@@ -30,7 +30,7 @@ struct ContentView: View {
                 .font(.system(size: 80))
                 .padding(.bottom,50)
             
-            Divider().frame(height: 5).background(Color.gray)
+            Divider().frame(height: 5).background(Color.gray).opacity(0.5)
             
             HStack(alignment: .center, spacing: 50, content: {
                 Button(action: {
@@ -49,7 +49,9 @@ struct ContentView: View {
                         .font(.system(size: 80))
                 })
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")))
+                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")){
+                        self.computerChoice = "?"
+                    })
                 }
                 Button(action: {
                     self.computerChoice = choicesArray.randomElement()!
@@ -67,7 +69,9 @@ struct ContentView: View {
                         .font(.system(size: 80))
                 })
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")))
+                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")){
+                        self.computerChoice = "?"
+                    })
                 }
                 Button(action: {
                     self.computerChoice = choicesArray.randomElement()!
@@ -85,7 +89,9 @@ struct ContentView: View {
                         .font(.system(size: 80))
                 })
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")))
+                    Alert(title: Text("Result"), message: Text(result), dismissButton: .default(Text("Got it!")){
+                        self.computerChoice = "?"
+                    })
                 }
                 
             })
@@ -99,7 +105,6 @@ struct ContentView: View {
         })
         .background(Color(UIColor.yellow).opacity(0.2))
         .edgesIgnoringSafeArea(.all)
-
     }
 }
 
