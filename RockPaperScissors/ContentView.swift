@@ -16,12 +16,15 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0, content: {
             Text("Rock Paper Scissors")
+                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                 .font(.largeTitle)
+                .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .padding(.bottom,50)
 //            Text(result)
 //                .padding(.bottom,100)
             Text("Computer Choice")
                 .font(.title2)
+                .foregroundColor(.red)
                 .padding(.bottom,50)
             Text(computerChoice)
                 .font(.system(size: 80))
@@ -90,9 +93,13 @@ struct ContentView: View {
             
             Text("Your Choice")
                 .font(.title2)
+                .foregroundColor(.purple)
                 .padding(.top,50)
             Spacer()
         })
+        .background(Color(UIColor.yellow).opacity(0.2))
+        .edgesIgnoringSafeArea(.all)
+
     }
 }
 
